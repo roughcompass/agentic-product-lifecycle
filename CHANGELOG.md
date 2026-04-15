@@ -8,6 +8,12 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions follow 
 
 ### Added
 - **Cross-tool compatibility**: `.github/copilot-instructions.md` (GitHub Copilot), `.cursorrules` (Cursor), `AGENTS.md` (generic fallback)
+
+### Changed
+- Deduplicated content across files: README owns structure/install, CLAUDE.md owns conventions/schemas, AGENTS.md owns the catalog, tool files are thin pointers
+- Slimmed `.github/copilot-instructions.md` and `.cursorrules` to Copilot/Cursor-specific guidance only, with pointers to CLAUDE.md
+- Removed repository structure from CLAUDE.md (README is the single source)
+- Removed duplicated installation and knowledge graph sections from AGENTS.md
 - MCP server configuration template (`templates/mcp-config.template.json`) for connecting agents to external data sources
 - Per-tool installation instructions in README (Claude Code, Copilot, Cursor)
 - **reporter** agent — generates status and executive updates from knowledge graph state and git history

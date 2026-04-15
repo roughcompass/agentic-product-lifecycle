@@ -2,15 +2,9 @@
 
 ## What This Project Is
 
-A curated registry of AI agents and templates for product-led software development. Agents are defined as `.agent.md` files. Templates are Markdown files that agents use to produce artifacts in target projects.
+A curated registry of AI agents and templates for product-led software development. See [README.md](README.md) for project philosophy, structure, and installation. See [AGENTS.md](AGENTS.md) for the agent/skill/template catalog.
 
-## Repository Structure
-
-- `agents/` — Agent definitions. One file per agent. File naming: `<name>.agent.md`
-- `templates/` — Artifact templates that agents reference. File naming: `<artifact-type>.template.<ext>` (e.g., `prd.template.md`, `research-sources.template.yaml`)
-- `skills/` — Reusable skills (future). File naming: `<name>.skill.md`
-- `registry.yaml` — Central index of all agents, skills, and their lifecycle phase mappings
-- `CODEOWNERS` — Ownership mapping for agents and skills
+This file defines the **conventions and schemas** that govern the project.
 
 ## Conventions
 
