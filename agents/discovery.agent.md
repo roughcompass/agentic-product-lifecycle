@@ -1,3 +1,14 @@
+---
+name: Discovery
+description: Conducts product discovery research, populates the knowledge graph, and produces discovery briefs
+version: 0.1.0
+phase: discovery
+skills: [knowledge-graph]
+templates: [discovery-brief, research-sources]
+owner: roughcompass
+status: active
+---
+
 # Discovery Agent
 
 ## Description
@@ -5,8 +16,6 @@
 Conducts and synthesizes product discovery research. Produces structured discovery briefs and populates the knowledge graph with personas, problems, evidence, and competitive context.
 
 Use this agent at the **Discovery** phase — before requirements are defined. It works with whatever inputs are available: your hypotheses, user feedback, competitor URLs, analytics, or nothing at all (it will research from scratch).
-
-**Lifecycle phase:** discovery
 
 ## Responsibilities
 

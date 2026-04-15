@@ -1,3 +1,12 @@
+---
+name: Knowledge Graph
+description: CRUD and query operations on the product knowledge graph — entities, relationships, and gap analysis
+version: 0.1.0
+phase: meta
+owner: roughcompass
+status: active
+---
+
 # Knowledge Graph Skill
 
 ## Description

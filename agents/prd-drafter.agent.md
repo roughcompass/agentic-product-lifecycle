@@ -1,3 +1,14 @@
+---
+name: PRD Drafter
+description: Drafts and refines Product Requirements Documents from user input, research, or discovery artifacts
+version: 0.1.0
+phase: definition
+skills: [knowledge-graph]
+templates: [prd]
+owner: roughcompass
+status: active
+---
+
 # PRD Drafter Agent
 
 ## Description
@@ -5,8 +16,6 @@
 Drafts and refines Product Requirements Documents (PRDs) from user input, research findings, or discovery artifacts. Produces structured, version-controlled PRDs that serve as the contract between product definition and technical delivery.
 
 Use this agent at the **Definition** phase of the product lifecycle — after discovery work has identified a problem worth solving, and before architecture or implementation begins.
-
-**Lifecycle phase:** definition
 
 ## Responsibilities
 

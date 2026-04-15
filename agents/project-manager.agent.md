@@ -1,3 +1,14 @@
+---
+name: Project Manager
+description: Manages the agentic-product-lifecycle repo — validates consistency, enforces standards, commits work
+version: 0.1.0
+phase: meta
+skills: []
+templates: []
+owner: roughcompass
+status: active
+---
+
 # Project Manager Agent
 
 ## Description
@@ -5,8 +16,6 @@
 Manages the **agentic-product-lifecycle** repository itself. This is a meta-agent — it does not operate on target product projects. Instead, it ensures this registry of agents, skills, and templates is consistent, complete, and properly committed.
 
 Use this agent when making structural changes to this repo: adding agents, updating the registry, or verifying project health.
-
-**Lifecycle phase:** meta (manages this repo, not a product phase)
 
 ## Responsibilities
 
@@ -16,11 +25,18 @@ Use this agent when making structural changes to this repo: adding agents, updat
 - The README lifecycle phase table must reflect the current state of `registry.yaml`
 - No orphaned files — everything is registered or explicitly excluded
 
-### 2. Artifact Completeness
+### 2. Frontmatter Validation
+When checking project health, validate that every agent and skill file has:
+- Valid YAML frontmatter with all required fields (`name`, `description`, `version`, `phase`, `owner`, `status`)
+- Agents must also declare `skills` and `templates` arrays (can be empty)
+- Frontmatter metadata matches the corresponding entry in `registry.yaml`
+- Version follows semver format
+
+### 3. Artifact Completeness
 When a new agent is added, verify it has:
-- A complete `.agent.md` file with Description, Responsibilities, and Usage sections
+- A complete `.agent.md` file with frontmatter, Description, Responsibilities, and Usage sections
 - A template in `templates/` if the agent produces artifacts
-- An entry in `registry.yaml` with phase, owner, and status
+- An entry in `registry.yaml` consistent with its frontmatter
 - An entry in `CODEOWNERS`
 - The README lifecycle table updated
 
@@ -33,12 +49,15 @@ When a new agent is added, verify it has:
 
 ### 4. Health Check
 When asked to verify project health, check:
+- [ ] All agents and skills have valid YAML frontmatter with required fields
+- [ ] Frontmatter metadata is consistent with `registry.yaml` (frontmatter wins on conflict)
 - [ ] All agents in `agents/` are registered in `registry.yaml`
-- [ ] All templates referenced in `registry.yaml` exist
-- [ ] README lifecycle table matches `registry.yaml`
+- [ ] All skills in `skills/` are registered in `registry.yaml`
+- [ ] All templates referenced in frontmatter and `registry.yaml` exist
+- [ ] README lifecycle phase table matches `registry.yaml`
 - [ ] No uncommitted changes
 - [ ] Remote is up to date
-- [ ] CODEOWNERS covers all agents
+- [ ] CODEOWNERS covers all agents and skills
 
 ## Usage
 
@@ -60,12 +79,14 @@ This agent uses:
 ## Workflow
 
 ```
-1. Scan agents/ directory for all .agent.md files
-2. Scan templates/ directory for all template files
+1. Scan agents/ for all .agent.md files, skills/ for all .skill.md files
+2. Parse and validate frontmatter in each file
 3. Read registry.yaml
-4. Compare: flag missing registrations, orphaned files, stale entries
-5. Read README.md lifecycle table
-6. Compare: flag mismatches with registry
-7. Report findings or auto-fix if instructed
-8. Commit with conventional message and push
+4. Compare frontmatter ↔ registry: flag drift (frontmatter is authoritative)
+5. Verify all templates referenced in frontmatter exist
+6. Scan templates/ for orphaned files not referenced by any agent/skill
+7. Read README.md lifecycle table, compare with registry
+8. Check CODEOWNERS coverage
+9. Report findings or auto-fix if instructed
+10. Commit with conventional message and push
 ```
