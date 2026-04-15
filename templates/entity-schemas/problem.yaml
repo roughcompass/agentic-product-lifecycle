@@ -1,0 +1,21 @@
+# Entity Schema: Problem
+# Represents a user problem or pain point worth solving.
+
+id: ""          # kebab-case identifier (e.g., onboarding-drop-off)
+name: ""        # Human-readable name
+type: problem
+
+statement: ""   # The problem in one sentence, from the user's perspective
+impact: ""      # What happens if this isn't solved
+frequency: ""   # How often users encounter this (daily, weekly, per-onboarding, etc.)
+severity: ""    # critical | high | medium | low
+
+personas: []    # Which personas experience this (references to persona IDs)
+evidence: []    # References to evidence entity IDs that support this problem
+status: ""      # hypothesized | validated | invalidated | addressed
+
+source: ""      # Where this problem was identified
+confidence: ""  # high | medium | low
+
+created: ""
+updated: ""

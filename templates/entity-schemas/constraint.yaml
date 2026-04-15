@@ -1,0 +1,19 @@
+# Entity Schema: Constraint
+# A limitation that bounds what can be built or how.
+
+id: ""          # kebab-case identifier (e.g., must-support-saml-oidc)
+name: ""        # Human-readable name
+type: constraint
+
+kind: ""        # technical | regulatory | business | resource | timeline
+description: "" # What the constraint is, in one sentence
+impact: ""      # How this constraint affects product decisions
+
+source: ""      # Where this constraint comes from (legal, architecture, stakeholder)
+negotiable: ""  # yes | no | partially — can this constraint be relaxed
+
+features: []    # Feature IDs this constrains
+decisions: []   # Decision IDs this influenced
+
+created: ""
+updated: ""

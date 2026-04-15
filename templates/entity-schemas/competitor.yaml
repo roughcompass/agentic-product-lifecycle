@@ -1,0 +1,22 @@
+# Entity Schema: Competitor
+# A competing product, feature, or alternative solution.
+
+id: ""          # kebab-case identifier (e.g., acme-sso-wizard)
+name: ""        # Product or company name
+type: competitor
+
+url: ""         # Product URL if applicable
+description: "" # What they do, in one sentence
+
+strengths: []   # What they do well relative to our context
+weaknesses: []  # Where they fall short
+differentiators: [] # What makes them uniquely different
+
+relevant_features: [] # Which of our features they compete with (feature entity IDs)
+relevant_problems: [] # Which problems they solve (problem entity IDs)
+
+source: ""      # Where this analysis came from
+confidence: ""  # high | medium | low
+
+created: ""
+updated: ""

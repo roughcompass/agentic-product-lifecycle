@@ -1,0 +1,19 @@
+# Entity Schema: Feature
+# A product capability — proposed, in progress, or shipped.
+
+id: ""          # kebab-case identifier (e.g., guided-sso-wizard)
+name: ""        # Human-readable name
+type: feature
+
+description: "" # What this feature does, in one sentence
+status: ""      # proposed | in-poc | approved | in-development | shipped | deprecated
+
+addresses: []   # Problem IDs this feature solves
+personas: []    # Persona IDs this feature serves
+constraints: [] # Constraint IDs that limit this feature
+
+prd_ref: ""     # Path to the PRD artifact, if one exists
+poc_ref: ""     # Path to POC definition, if one exists
+
+created: ""
+updated: ""

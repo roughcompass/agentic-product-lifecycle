@@ -1,0 +1,20 @@
+# Entity Schema: Evidence
+# A data point, quote, metric, or finding that supports or refutes a claim.
+
+id: ""          # kebab-case identifier (e.g., q1-onboarding-abandonment-rate)
+name: ""        # Human-readable name
+type: evidence
+
+kind: ""        # quantitative | qualitative | anecdotal
+summary: ""     # What this evidence says, in one sentence
+detail: ""      # Full context — the quote, the metric, the finding
+
+source_type: "" # analytics | interview | survey | support-ticket | market-research | competitor-analysis | internal
+source_ref: ""  # Specific source (e.g., "Amplitude, Q1 2026", "User interview #12")
+
+supports: []    # Entity IDs this evidence supports (problems, decisions)
+refutes: []     # Entity IDs this evidence argues against
+confidence: ""  # high | medium | low — reliability of the source
+
+created: ""
+updated: ""

@@ -1,0 +1,38 @@
+# Research Sources Configuration
+#
+# Place this file at .lifecycle/research-sources.yaml in your target project.
+# The discovery agent reads this to know which data sources are available.
+#
+# For each source type, set the MCP server provider name or null if unavailable.
+# The agent adapts its research plan based on what's configured.
+
+sources:
+  # Product analytics (usage data, funnels, retention)
+  analytics:
+    provider: null       # e.g., amplitude, mixpanel, posthog
+    notes: ""
+
+  # Customer support tickets and feedback
+  support:
+    provider: null       # e.g., zendesk, intercom, freshdesk
+    notes: ""
+
+  # CRM data (customer profiles, deal context, churn reasons)
+  crm:
+    provider: null       # e.g., hubspot, salesforce
+    notes: ""
+
+  # Internal documentation (wikis, research repos, design docs)
+  documents:
+    provider: null       # e.g., notion, confluence, google-docs
+    notes: ""
+
+  # User research repositories
+  research:
+    provider: null       # e.g., dovetail, notion
+    notes: ""
+
+  # Project management (existing tickets, epics, roadmap)
+  project_management:
+    provider: null       # e.g., linear, jira, github-issues
+    notes: ""

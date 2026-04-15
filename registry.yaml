@@ -20,6 +20,16 @@ agents:
     owner: roughcompass
     status: active
 
+  discovery:
+    file: agents/discovery.agent.md
+    phase: discovery
+    description: Conducts product discovery research, populates the knowledge graph, and produces discovery briefs.
+    template: templates/discovery-brief.md
+    skills:
+      - knowledge-graph
+    owner: roughcompass
+    status: active
+
   prd-drafter:
     file: agents/prd-drafter.agent.md
     phase: definition
@@ -36,5 +46,43 @@ templates:
     used_by:
       - prd-drafter
 
-skills: {}
-  # Future skills will be registered here
+  discovery-brief:
+    file: templates/discovery-brief.md
+    phase: discovery
+    description: Discovery brief template synthesizing research findings with knowledge graph references.
+    used_by:
+      - discovery
+
+  research-sources:
+    file: templates/research-sources.yaml
+    phase: discovery
+    description: Configuration template declaring available data sources for the discovery agent.
+    used_by:
+      - discovery
+
+  entity-schemas:
+    file: templates/entity-schemas/
+    phase: meta
+    description: YAML schema templates for knowledge graph entity types (persona, problem, evidence, competitor, feature, decision, constraint).
+    used_by:
+      - knowledge-graph
+
+skills:
+  knowledge-graph:
+    file: skills/knowledge-graph.skill.md
+    phase: meta
+    description: CRUD and query operations on the product knowledge graph. Used by all lifecycle agents.
+    owner: roughcompass
+    status: active
+
+knowledge:
+  graph_index: knowledge/graph.yaml
+  entity_types:
+    - personas
+    - problems
+    - evidence
+    - competitors
+    - features
+    - decisions
+    - constraints
+  schema_templates: templates/entity-schemas/

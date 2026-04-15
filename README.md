@@ -9,16 +9,17 @@ Most product work fails not from bad code, but from missing context: unclear req
 **Core principles:**
 
 - **Artifacts over conversations** — Agents produce durable, version-controlled documents (PRDs, ADRs, POC definitions), not ephemeral chat threads.
+- **Cumulative knowledge** — A product knowledge graph connects personas, problems, evidence, competitors, and decisions across the entire lifecycle. Research compounds over time.
 - **Phases are explicit** — Every product moves through discovery, definition, validation, delivery, and feedback. Agents are mapped to these phases.
-- **Pluggable, not prescriptive** — Use the agents that fit your workflow. Bring your own tooling (Linear, Jira, GitHub Issues) via MCP servers.
-- **Git is the system of record** — All artifacts live in your repo. All decisions are traceable through commits.
+- **Pluggable, not prescriptive** — Use the agents that fit your workflow. Bring your own tooling (Linear, Jira, GitHub Issues) via MCP servers. Connect data sources (analytics, CRM, support) for richer discovery.
+- **Git is the system of record** — All artifacts and knowledge graph entities live in your repo. All decisions are traceable through commits.
 - **Single-person to team scale** — The same agents work whether you're a solo founder or a cross-functional team.
 
 ## Lifecycle Phases
 
 | Phase | Description | Agents |
 |-------|-------------|--------|
-| **Discovery** | Research, user problems, market context | _planned_ |
+| **Discovery** | Research, user problems, market context | `discovery` |
 | **Definition** | Product requirements, success criteria | `prd-drafter` |
 | **Architecture** | Technical design, boundaries, ADRs | _planned_ |
 | **Validation** | POC stages, spike definitions, experiments | _planned_ |
@@ -35,10 +36,25 @@ agentic-product-lifecycle/
 ├── CLAUDE.md                  # Conventions for Claude Code
 ├── agents/                    # Agent definitions (.agent.md)
 │   ├── project-manager.agent.md
+│   ├── discovery.agent.md
 │   └── prd-drafter.agent.md
-├── skills/                    # Reusable skills (future)
-├── templates/                 # Artifact templates
-│   └── prd.md
+├── skills/                    # Reusable skills
+│   └── knowledge-graph.skill.md
+├── knowledge/                 # Product knowledge graph
+│   ├── graph.yaml             # Relationship index
+│   └── entities/              # Entity files by type
+│       ├── personas/
+│       ├── problems/
+│       ├── evidence/
+│       ├── competitors/
+│       ├── features/
+│       ├── decisions/
+│       └── constraints/
+├── templates/                 # Artifact & entity templates
+│   ├── prd.md
+│   ├── discovery-brief.md
+│   ├── research-sources.yaml
+│   └── entity-schemas/        # Knowledge graph entity schemas
 ├── registry.yaml              # Agent/skill registry & lifecycle mapping
 └── CODEOWNERS                 # Agent ownership
 ```

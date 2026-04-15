@@ -1,0 +1,55 @@
+# Knowledge Graph — Relationship Index
+#
+# This file tracks relationships between entities in knowledge/entities/.
+# Each relationship is a triple: subject → predicate → object.
+# Entity references use the format: type/id (e.g., personas/enterprise-admin)
+#
+# Agents read this index to traverse the graph. The knowledge-graph skill
+# manages additions and queries.
+
+schema_version: 1
+
+# Supported relationship types and their valid subject → object entity types.
+relationship_types:
+  experiences:
+    subject: personas
+    object: problems
+    description: A persona experiences a problem
+
+  solved_by:
+    subject: problems
+    object: features
+    description: A problem is addressed by a feature
+
+  competes_with:
+    subject: features
+    object: competitors
+    description: A feature has a competitive equivalent
+
+  informed_by:
+    subject: decisions
+    object: evidence
+    description: A decision is supported by evidence
+
+  sourced_from:
+    subject: evidence
+    object: null  # free-text source reference
+    description: Evidence originates from a source
+
+  addresses:
+    subject: features
+    object: problems
+    description: A feature addresses a problem
+
+  validates:
+    subject: evidence
+    object: problems
+    description: Evidence validates or invalidates a problem hypothesis
+
+  constrains:
+    subject: constraints
+    object: features
+    description: A constraint limits how a feature can be built
+
+# Active relationships (populated by agents and the knowledge-graph skill)
+relationships: []

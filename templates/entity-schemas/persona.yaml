@@ -1,0 +1,20 @@
+# Entity Schema: Persona
+# Represents a user type or stakeholder archetype.
+
+id: ""          # kebab-case identifier (e.g., enterprise-admin)
+name: ""        # Human-readable name
+type: persona
+
+description: "" # Who this person is, in one sentence
+
+role: ""        # Their role or title
+context: ""     # Environment they operate in
+goals: []       # What they're trying to accomplish
+pain_points: [] # What frustrates them or blocks their goals
+behaviors: []   # Observable patterns relevant to the product
+
+source: ""      # Where this persona was identified (research, interviews, assumption)
+confidence: ""  # high | medium | low — how well-evidenced is this persona
+
+created: ""     # ISO date
+updated: ""     # ISO date

@@ -6,10 +6,17 @@
 
 # Agents
 agents/project-manager.agent.md @roughcompass
+agents/discovery.agent.md @roughcompass
 agents/prd-drafter.agent.md @roughcompass
 
+# Skills
+skills/knowledge-graph.skill.md @roughcompass
+
 # Templates
-templates/prd.md @roughcompass
+templates/ @roughcompass
+
+# Knowledge graph
+knowledge/ @roughcompass
 
 # Registry and project config
 registry.yaml @roughcompass
