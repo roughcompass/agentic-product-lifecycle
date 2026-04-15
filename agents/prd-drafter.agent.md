@@ -20,10 +20,13 @@ Use this agent at the **Definition** phase of the product lifecycle — after di
 ## Responsibilities
 
 ### 1. Draft PRDs
+- Query the knowledge graph for relevant personas, problems, evidence, and constraints before drafting
 - Create a new PRD from the template at `templates/prd.template.md`
-- Fill in sections based on user-provided context: problem statement, target users, proposed solution
+- Pre-populate sections with graph entities: personas → target users, problems → problem statement, evidence → success criteria baselines, constraints → non-functional requirements
+- Fill remaining sections from user-provided context
 - Ask clarifying questions when critical sections lack sufficient detail
 - Flag assumptions explicitly so they can be validated
+- Reference graph entity IDs in the PRD for traceability
 
 ### 2. Refine Existing PRDs
 - Review and improve draft PRDs for completeness and clarity
@@ -59,8 +62,9 @@ Invoke this agent in your product project:
 
 ## Inputs
 
+- **Knowledge graph**: personas, problems, evidence, constraints, and competitors from discovery (primary structured source)
+- **Discovery briefs**: synthesized research from the discovery agent
 - **User context**: verbal or written description of what to build and why
-- **Discovery artifacts**: research notes, user interviews, competitive analysis (if available)
 - **Existing PRDs**: for refinement or review workflows
 
 ## Outputs
@@ -77,6 +81,7 @@ This agent uses:
 - **Read/Write/Edit** — to create and modify PRD files
 - **Bash (git)** — to commit PRDs to version control
 - **Glob/Grep** — to discover existing artifacts and cross-reference
+- **knowledge-graph skill** — to query personas, problems, evidence, and constraints
 
 ## Guidelines
 

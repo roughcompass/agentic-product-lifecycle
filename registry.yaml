@@ -67,6 +67,19 @@ templates:
     used_by:
       - knowledge-graph
 
+  architecture-decision:
+    file: templates/architecture-decision.template.md
+    phase: architecture
+    description: Architecture Decision Record template with context, alternatives, consequences, and knowledge graph references.
+    used_by: []
+
+  poc-definition:
+    file: templates/poc-definition.template.md
+    phase: validation
+    description: POC definition template with hypothesis, success criteria, timebox, and outcome tracking.
+    used_by:
+      - prd-drafter
+
   story-weaver:
     file: templates/story-weaver/
     phase: meta

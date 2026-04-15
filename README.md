@@ -21,8 +21,8 @@ Most product work fails not from bad code, but from missing context: unclear req
 |-------|-------------|--------|
 | **Discovery** | Research, user problems, market context | `discovery` |
 | **Definition** | Product requirements, success criteria | `prd-drafter` |
-| **Architecture** | Technical design, boundaries, ADRs | _planned_ |
-| **Validation** | POC stages, spike definitions, experiments | _planned_ |
+| **Architecture** | Technical design, boundaries, ADRs | _planned_ (template ready) |
+| **Validation** | POC stages, spike definitions, experiments | _planned_ (template ready) |
 | **Delivery** | Implementation, stories, task breakdown | _planned_ |
 | **Quality** | Review, testing strategy, acceptance | _planned_ |
 | **Release** | Deployment, changelog, communication | _planned_ |
