@@ -1,7 +1,7 @@
 ---
 name: Story Weaver
 description: Builds scroll-driven narrative stories as self-contained HTML pages from product artifacts and knowledge graph entities
-version: 0.1.0
+version: 0.2.0
 phase: meta
 owner: roughcompass
 status: active
@@ -11,7 +11,7 @@ status: active
 
 ## Description
 
-Produces production-grade interactive scroll-driven story pages. Each story is a sequence of full-viewport scenes with editorial typography, considered motion, and optional interactive moments. Output is self-contained HTML + CSS + JS that opens directly in any browser. No build step, no framework, no dependencies beyond Google Fonts.
+Produces production-grade interactive scroll-driven story pages. Each story is a sequence of full-viewport scenes with editorial typography, considered motion, and optional interactive moments. Output is self-contained HTML + CSS + JS that opens directly in any browser. No build step, no framework, no dependencies beyond Google Fonts. No external APIs or backend dependencies — all data, logic, and assets must live inside the file. Use CDN links for libraries only when unavoidable, and note when this is done.
 
 This is a cross-cutting skill — any lifecycle phase agent can use it to turn product artifacts into compelling visual narratives.
 
@@ -107,16 +107,22 @@ If the target directory does not already have `assets/runtime.css` and `assets/r
 
 ### 3. Commit to an Aesthetic
 
-Before writing markup, pick the aesthetic. Never default to generic SaaS.
+Before writing markup, pick the aesthetic. **The default is editorial light** — clean, confident, professional. Generous white space, restrained typography, a single accent color used with discipline. Reference sensibility: JPMorgan.com, a high-end annual report, or a McKinsey white paper. This baseline works for most stories.
 
-- **Editorial dark** — warm near-black, cream text, single accent. NYT Magazine meets Linear changelog. Good for serious pitches, convergence stories, platform narratives.
-- **Editorial light** — off-white, high-contrast serif, single accent. Clinical, authoritative. Good for research readouts, strategy memos.
-- **Brutalist** — raw monospace, gridlines visible, annotations in margins. Good for technical arguments, reliability stories.
-- **Retro-futuristic** — orange/cyan on deep blue, geometric shapes, soft terminal glow. Good for developer-platform stories.
+Dark themes and expressive typography are valid when the content demands it, but must be a **deliberate choice, not a default**. If you choose a non-default direction, state why before writing markup.
+
+Available directions (editorial light is default, others require justification):
+
+- **Editorial light** *(default)* — off-white, high-contrast black serif display, single accent. Clinical, authoritative. Good for pitches, strategy, product stories, research, white papers.
+- **Editorial dark** — near-black warm background, cream text, single accent. Good for dramatic narratives, convergence stories, transformation arcs. *Choose this when the content has high emotional stakes.*
+- **Brutalist** — raw monospace, gridlines visible, annotations in margins. Good for technical arguments, reliability stories. *Choose this when the audience is deeply technical.*
 - **Museum catalog** — cream paper, deep serif, quiet. Good for history/origin stories.
-- **Zine** — harsh contrast, rotated text, photocopy textures. Good for rebellion/change narratives.
 
-If you can't name the direction in one phrase, you haven't picked one.
+Never default to generic SaaS aesthetics.
+
+**Narrative coherence across the whole piece:** Treat the full page as one story with a beginning, middle, and end. Typography, color, spacing, and motion must be consistent across all sections. No section should feel like it came from a different design. Establish a clear visual system at the start and honor it throughout.
+
+**Legibility at presentation scale:** Assume the output may be projected or shared on a large screen. Default to larger base font sizes (18–22px body, 40px+ headlines), high contrast, and ample padding. Avoid fine details that disappear at distance.
 
 ### 4. Choose Typography
 
@@ -167,17 +173,23 @@ Start from `templates/story-weaver/story.template.html`. Scene types from `templ
 - `scene--widget` — wraps a story-specific interactive moment
 - `scene--closer` — final takeaway
 
-### 7. Interactive Moments
+### 7. Interactive Moments — Presenter Control, Not Decoration
 
-Add only when they make the argument land harder than text alone:
+Interactivity exists to let the presenter control the pace of the story — not to impress viewers with effects. Every interactive component should have a clear structure: click to advance, scroll to reveal, toggle to compare, step through a sequence.
 
-- **Tab-switcher** — shows multiple states of the same thing
-- **Before/after comparison** — two columns, the user's eye does the work
-- **Counter/ticker** — numbers that climb or land dramatically
-- **Scrubber** — drag a slider through a timeline
+**Prioritize:** step reveals, section navigation, progressive disclosure, and state changes the presenter triggers.
+
+**Minimize:** ambient animations, auto-playing effects, or motion that runs without user intent.
+
+Good interactive patterns:
+
+- **Step reveals** — click to reveal the next piece of content within a scene
+- **Tab-switcher** — shows multiple states of the same thing, presenter chooses
+- **Before/after comparison** — two columns or toggle, the user's eye does the work
 - **Workflow stepper** — step through a journey with annotations
+- **Progressive disclosure** — details expand on click, keeping the default view clean
 
-No decorative animations. No hover effects that don't change comprehension. No carousels.
+No decorative animations. No hover effects that don't change comprehension. No carousels. No auto-playing counters that fire once and can't be replayed.
 
 ### 8. Verify
 
@@ -254,3 +266,55 @@ Override in `story.css`:
 - `templates/story-weaver/references/design-principles.md` — aesthetic guidance and anti-patterns
 - `templates/story-weaver/assets/runtime.css` — shared scroll engine styles
 - `templates/story-weaver/assets/runtime.js` — shared scroll engine logic
+
+## Critic Subagent
+
+After generating a story, spawn a critic subagent to evaluate the output. The critic uses this skill's own principles as its evaluation rubric — the skill defines what good looks like, and the critic enforces it.
+
+### Critic Responsibilities
+
+1. **Take a screenshot** of the rendered story using available browser/screenshot tools. Capture at desktop width (1280x900) at minimum.
+
+2. **Evaluate the screenshot visually** against these criteria, scoring each 1–5:
+
+   | Criterion | What to assess |
+   |-----------|---------------|
+   | **Aesthetic clarity** | Light, editorial, professional — not dark or generic unless explicitly justified. Generous whitespace, restrained typography, single accent color. |
+   | **Narrative flow** | Is the content sequenced and revealed logically? Does the arc have a clear beginning, middle, and end? Does every scene earn its place? |
+   | **Interactivity quality** | Does interaction serve presenter control (step reveals, navigation, toggles), not decoration (ambient animations, auto-play)? |
+   | **Legibility at scale** | Would this read well projected on a large screen? Body 18–22px, headlines 40px+, high contrast, ample padding. |
+   | **Coherence** | Does the whole piece feel like one designed system? Typography, color, spacing, and motion consistent across all sections. |
+
+3. **Return structured feedback:**
+   - What specifically failed (criterion, score, why)
+   - What specifically worked (criterion, score, why)
+   - One concrete code change to fix the weakest area
+
+4. **Apply the fix** and re-screenshot to confirm improvement.
+
+5. **Propose a skill update:** If the issue or the fix reveals a gap or a wrong assumption in this skill itself, draft a one-line addition or correction to the skill rules and ask the user to approve it. Approving a skill update closes the loop — the next generation starts from a better baseline.
+
+### Invoking the Critic
+
+Use the Agent tool to spawn the critic as a subagent:
+
+```
+Agent({
+  description: "Story-weaver critic",
+  prompt: "You are a visual design critic for a story-weaver output. Take a screenshot of [story path], evaluate it against the 5 criteria (aesthetic clarity, narrative flow, interactivity quality, legibility at scale, coherence), score each 1-5, report what failed and what worked, and propose one concrete code fix for the weakest area. Then apply the fix and re-screenshot to confirm."
+})
+```
+
+The critic should be harsh but constructive. A score of 3 is mediocre. The bar is 4+ on every criterion.
+
+## Visual Review Loop
+
+After generating a story, treat the first output as a **draft to be validated**, not a final deliverable.
+
+1. Render a live preview (open in browser or take a screenshot)
+2. Run the critic subagent
+3. Ask the user: **"Does this visual direction feel right — aesthetic, pacing, and flow? What would you adjust?"**
+4. Apply feedback (from critic and user) and re-render
+5. Iterate until the user confirms or the critic scores 4+ on all criteria
+
+Never present a story as finished without at least one visual validation pass. The first generation is a starting point for dialogue, not a delivery.
