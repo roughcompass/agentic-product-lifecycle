@@ -7,6 +7,12 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions follow 
 ## [Unreleased]
 
 ### Added
+- **delivery-planner** agent — breaks PRDs into stories/tasks with acceptance criteria, dependency mapping, and RICE-based sequencing
+- **validator** agent — manages POC lifecycle, evaluates outcomes against criteria, recommends go/no-go, tracks validation debt
+- **feedback** agent — reviews shipped features against success criteria, synthesizes learnings, feeds insights back into knowledge graph
+- **prioritization** skill — RICE scoring, impact/effort matrix, MoSCoW classification, stack ranking, option comparison
+- Delivery plan template with stories, dependency map, critical path, and definition of done
+- Retrospective template with outcome review, learning synthesis, and lifecycle timeline
 - **Cross-tool compatibility**: `.github/copilot-instructions.md` (GitHub Copilot), `.cursorrules` (Cursor), `AGENTS.md` (generic fallback)
 
 ### Changed

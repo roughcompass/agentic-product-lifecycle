@@ -51,6 +51,38 @@ agents:
     owner: roughcompass
     status: active
 
+  delivery-planner:
+    file: agents/delivery-planner.agent.md
+    phase: delivery
+    description: Breaks PRDs into stories/tasks with acceptance criteria, dependency mapping, and sequencing.
+    template: templates/delivery-plan.template.md
+    skills:
+      - knowledge-graph
+      - prioritization
+    owner: roughcompass
+    status: active
+
+  validator:
+    file: agents/validator.agent.md
+    phase: validation
+    description: Manages POC lifecycle — defines experiments, tracks outcomes, recommends go/no-go decisions.
+    template: templates/poc-definition.template.md
+    skills:
+      - knowledge-graph
+    owner: roughcompass
+    status: active
+
+  feedback:
+    file: agents/feedback.agent.md
+    phase: feedback
+    description: Reviews outcomes against goals, synthesizes learnings, feeds insights back into the knowledge graph.
+    template: templates/retrospective.template.md
+    skills:
+      - knowledge-graph
+      - prioritization
+    owner: roughcompass
+    status: active
+
 templates:
   prd:
     file: templates/prd.template.md
@@ -106,6 +138,21 @@ templates:
     description: POC definition template with hypothesis, success criteria, timebox, and outcome tracking.
     used_by:
       - prd-drafter
+      - validator
+
+  delivery-plan:
+    file: templates/delivery-plan.template.md
+    phase: delivery
+    description: Delivery plan with stories, acceptance criteria, dependency map, and critical path.
+    used_by:
+      - delivery-planner
+
+  retrospective:
+    file: templates/retrospective.template.md
+    phase: feedback
+    description: Retrospective template with outcome review, learning synthesis, and lifecycle timeline.
+    used_by:
+      - feedback
 
   story-weaver:
     file: templates/story-weaver/
@@ -133,6 +180,13 @@ skills:
     file: skills/story-weaver.skill.md
     phase: meta
     description: Builds scroll-driven narrative stories as self-contained HTML from lifecycle artifacts and knowledge graph.
+    owner: roughcompass
+    status: active
+
+  prioritization:
+    file: skills/prioritization.skill.md
+    phase: meta
+    description: Scoring and ranking frameworks — RICE, impact/effort, MoSCoW, stack ranking, option comparison.
     owner: roughcompass
     status: active
 

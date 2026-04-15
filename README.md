@@ -23,17 +23,18 @@ Most product work fails not from bad code, but from missing context: unclear req
 | **Definition** | Product requirements, success criteria | `prd-drafter` |
 | **Reporting** | Status updates, executive summaries | `reporter` |
 | **Architecture** | Technical design, boundaries, ADRs | _planned_ (template ready) |
-| **Validation** | POC stages, spike definitions, experiments | _planned_ (template ready) |
-| **Delivery** | Implementation, stories, task breakdown | _planned_ |
+| **Validation** | POC stages, spike definitions, experiments | `validator` |
+| **Delivery** | Implementation, stories, task breakdown | `delivery-planner` |
 | **Quality** | Review, testing strategy, acceptance | _planned_ |
 | **Release** | Deployment, changelog, communication | _planned_ |
-| **Feedback** | Retrospectives, metrics review, iteration | _planned_ |
+| **Feedback** | Retrospectives, metrics review, iteration | `feedback` |
 
 ### Cross-Cutting Skills
 
 | Skill | Description |
 |-------|-------------|
 | `knowledge-graph` | CRUD and query operations on the product knowledge graph |
+| `prioritization` | RICE scoring, impact/effort, MoSCoW, stack ranking, option comparison |
 | `story-weaver` | Scroll-driven narrative stories from lifecycle artifacts and knowledge graph entities |
 
 ## Project Structure
