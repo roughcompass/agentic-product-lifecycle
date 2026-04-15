@@ -1,0 +1,33 @@
+# Agentic Product Lifecycle — Cursor Rules
+
+## What This Project Is
+
+A registry of AI agents, skills, and templates for product-led software development. Not an application. Agents are defined as `.agent.md` files, skills as `.skill.md` files, templates as `.template.md`/`.template.yaml` files.
+
+## Structure
+
+- `agents/` — Agent definitions with YAML frontmatter (name, description, version, phase, skills, templates, owner, status)
+- `skills/` — Reusable skills with YAML frontmatter (name, description, version, phase, owner, status)
+- `templates/` — Artifact templates with `{{placeholder}}` syntax
+- `knowledge/` — Product knowledge graph (entities in `knowledge/entities/`, relationships in `knowledge/graph.yaml`)
+- `registry.yaml` — Central index. Must stay in sync with file frontmatter (frontmatter is canonical).
+
+## Conventions
+
+- Frontmatter is required on all `.agent.md` and `.skill.md` files. Frontmatter is the source of truth.
+- Entity IDs are immutable. Names are display-only. References use `type/id` format.
+- Author fields: `{{author_handle}}` for stable reference, `{{author_name}}` for display.
+- Knowledge graph entities use three layers: summary, detail, source ref.
+- Conventional commits: `feat(agent):`, `fix(template):`, `docs:`, `chore:`.
+
+## When Editing
+
+- Keep agents self-contained — each file must be portable to any project.
+- Update `registry.yaml` when adding/changing agents, skills, or templates.
+- Don't assume specific tooling (Jira, Linear) — use abstract references.
+- Personas include all stakeholder types, not just end users.
+- Problems include business, operational, and technical issues, not just user pain points.
+
+## Full Conventions
+
+See `CLAUDE.md` for the complete specification.

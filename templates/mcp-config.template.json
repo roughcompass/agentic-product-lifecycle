@@ -1,0 +1,40 @@
+{
+  "_comment": "MCP server configuration for target projects. Agents use these servers for external data access. Only configure servers you have access to.",
+  "mcpServers": {
+    "analytics": {
+      "_comment": "Product analytics (usage data, funnels, retention). Used by: discovery agent",
+      "command": "mcp-server-${PROVIDER}",
+      "args": ["--api-key=${API_KEY}"],
+      "disabled": true,
+      "providers": ["amplitude", "mixpanel", "posthog"]
+    },
+    "support": {
+      "_comment": "Customer support tickets and feedback. Used by: discovery agent",
+      "command": "mcp-server-${PROVIDER}",
+      "args": ["--api-key=${API_KEY}"],
+      "disabled": true,
+      "providers": ["zendesk", "intercom", "freshdesk"]
+    },
+    "crm": {
+      "_comment": "CRM data (customer profiles, deal context). Used by: discovery agent",
+      "command": "mcp-server-${PROVIDER}",
+      "args": ["--api-key=${API_KEY}"],
+      "disabled": true,
+      "providers": ["hubspot", "salesforce"]
+    },
+    "documents": {
+      "_comment": "Internal documentation and wikis. Used by: discovery agent, reporter agent",
+      "command": "mcp-server-${PROVIDER}",
+      "args": ["--api-key=${API_KEY}"],
+      "disabled": true,
+      "providers": ["notion", "confluence", "google-docs"]
+    },
+    "project-management": {
+      "_comment": "Issue tracking and roadmap. Used by: reporter agent",
+      "command": "mcp-server-${PROVIDER}",
+      "args": ["--api-key=${API_KEY}"],
+      "disabled": true,
+      "providers": ["linear", "jira", "github-issues"]
+    }
+  }
+}

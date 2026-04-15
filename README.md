@@ -75,34 +75,66 @@ agentic-product-lifecycle/
 
 ## Installation
 
-### Quick Start (copy agents into your project)
+This repo supports **Claude Code**, **GitHub Copilot**, and **Cursor**. Each tool discovers project context differently.
+
+### Claude Code
+
+Claude Code discovers agents in `.claude/agents/` and skills in `.claude/skills/`:
 
 ```bash
 # Clone this repo
 git clone git@github.com:roughcompass/agentic-product-lifecycle.git
 
-# Copy the agents you need into your project
-cp agentic-product-lifecycle/agents/prd-drafter.agent.md your-project/.agent/
-cp agentic-product-lifecycle/templates/prd.template.md your-project/templates/
+# Copy agents to your project
+cp agents/discovery.agent.md your-project/.claude/agents/
+cp agents/prd-drafter.agent.md your-project/.claude/agents/
+
+# Copy skills
+cp skills/knowledge-graph.skill.md your-project/.claude/skills/
+
+# Copy templates
+cp -r templates/ your-project/.lifecycle/templates/
 ```
 
-### As a Git Submodule
+### GitHub Copilot
+
+Copilot reads `.github/copilot-instructions.md` automatically:
+
+```bash
+mkdir -p your-project/.github
+cp .github/copilot-instructions.md your-project/.github/
+```
+
+### Cursor
+
+Cursor reads `.cursorrules` from the project root:
+
+```bash
+cp .cursorrules your-project/.cursorrules
+```
+
+### As a Git Submodule (all tools)
 
 ```bash
 # Add to your project as a submodule
 git submodule add git@github.com:roughcompass/agentic-product-lifecycle.git .lifecycle
 
-# Symlink agents you want active
-ln -s .lifecycle/agents/prd-drafter.agent.md .agent/prd-drafter.agent.md
+# Symlink agents for Claude Code
+ln -s ../.lifecycle/agents/discovery.agent.md .claude/agents/discovery.agent.md
+ln -s ../.lifecycle/agents/prd-drafter.agent.md .claude/agents/prd-drafter.agent.md
 ```
 
 ### What Gets Installed Where
 
 This repo is the **source of truth** for agent definitions and templates. When installed into a target project:
 
-- **Agents** (`.agent.md` files) go into the target project's working directory where Claude Code discovers them.
+- **Agents** (`.agent.md` files) go into `.claude/agents/` where Claude Code discovers them automatically.
+- **Skills** (`.skill.md` files) go into `.claude/skills/`.
 - **Templates** provide the structure for artifacts that agents produce.
 - **Artifacts** (PRDs, ADRs, etc.) are created in the _target project_, not here. This repo owns the agents; your project owns the output.
+- **Tool instructions** (`.github/copilot-instructions.md`, `.cursorrules`) provide project context for non-Claude tools.
+
+See [AGENTS.md](AGENTS.md) for the full cross-tool installation reference.
 
 ## Contributing
 

@@ -7,6 +7,9 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions follow 
 ## [Unreleased]
 
 ### Added
+- **Cross-tool compatibility**: `.github/copilot-instructions.md` (GitHub Copilot), `.cursorrules` (Cursor), `AGENTS.md` (generic fallback)
+- MCP server configuration template (`templates/mcp-config.template.json`) for connecting agents to external data sources
+- Per-tool installation instructions in README (Claude Code, Copilot, Cursor)
 - **reporter** agent — generates status and executive updates from knowledge graph state and git history
 - Status update template (team-facing: what changed, what's next, blockers, stale items)
 - Executive update template (leadership-facing: progress against goals, decisions, risks)

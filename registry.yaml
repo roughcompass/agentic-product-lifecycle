@@ -114,6 +114,13 @@ templates:
     used_by:
       - story-weaver
 
+  mcp-config:
+    file: templates/mcp-config.template.json
+    phase: meta
+    description: MCP server configuration template for connecting agents to external data sources.
+    used_by:
+      - discovery
+
 skills:
   knowledge-graph:
     file: skills/knowledge-graph.skill.md
