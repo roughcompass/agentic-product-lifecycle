@@ -1,0 +1,40 @@
+# Agentic Product Lifecycle — Registry
+# Central index of all agents, skills, and templates.
+# Every entry maps to a lifecycle phase and an owner.
+
+lifecycle_phases:
+  - discovery
+  - definition
+  - architecture
+  - validation
+  - delivery
+  - quality
+  - release
+  - feedback
+
+agents:
+  project-manager:
+    file: agents/project-manager.agent.md
+    phase: meta
+    description: Manages this repository — ensures artifacts, registry, and README are consistent and work is committed.
+    owner: roughcompass
+    status: active
+
+  prd-drafter:
+    file: agents/prd-drafter.agent.md
+    phase: definition
+    description: Drafts and refines Product Requirements Documents from user input, research, or discovery artifacts.
+    template: templates/prd.md
+    owner: roughcompass
+    status: active
+
+templates:
+  prd:
+    file: templates/prd.md
+    phase: definition
+    description: Product Requirements Document template with structured sections for problem, solution, scope, and success criteria.
+    used_by:
+      - prd-drafter
+
+skills: {}
+  # Future skills will be registered here

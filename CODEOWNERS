@@ -1,0 +1,16 @@
+# Agentic Product Lifecycle — Code Owners
+# Each agent and template has an explicit owner for PR reviews.
+
+# Default owner for everything
+* @roughcompass
+
+# Agents
+agents/project-manager.agent.md @roughcompass
+agents/prd-drafter.agent.md @roughcompass
+
+# Templates
+templates/prd.md @roughcompass
+
+# Registry and project config
+registry.yaml @roughcompass
+CLAUDE.md @roughcompass
