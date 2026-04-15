@@ -10,7 +10,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions follow 
 - **reporter** agent — generates status and executive updates from knowledge graph state and git history
 - Status update template (team-facing: what changed, what's next, blockers, stale items)
 - Executive update template (leadership-facing: progress against goals, decisions, risks)
+- Three-layer data model documented in knowledge-graph skill (summary → detail → source ref)
 - ADR (Architecture Decision Record) template with knowledge graph references
+
+### Changed
+- Persona schema broadened: now covers end users, buyers, internal stakeholders, partners, regulators (added `kind`, `influence`, `source_ref` fields)
+- Problem schema broadened: now covers user-facing, business, operational, technical, and compliance problems (added `kind`, `domain`, `source_ref` fields)
+- Evidence schema enhanced: explicit three-layer structure, richer source_ref examples, added `collected` date field
 - POC definition template with hypothesis, success criteria, and outcome sections
 - `.gitignore` and MIT `LICENSE`
 - `CHANGELOG.md`

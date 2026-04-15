@@ -15,6 +15,28 @@ Provides read/write operations on the product knowledge graph stored in `knowled
 
 This skill works on flat YAML files in the repo. It is the abstraction point — if the backend later moves to a graph database via MCP, only this skill changes.
 
+## Data Model
+
+Entity files store **distilled knowledge**, not raw content. Each entity has three layers:
+
+| Layer | Purpose | Example (evidence entity) |
+|-------|---------|--------------------------|
+| **Summary** | The synthesized insight, in your words | "42% of enterprise users abandon onboarding at SSO config step" |
+| **Detail** | Enough context to be useful without the source | "Amplitude funnel, Q1 2026. Drop-off at SAML metadata upload. Successful users take avg 12 min." |
+| **Source ref** | Pointer to the original for verification | `amplitude://funnel/sso-onboarding` or `interviews/admin-03.md:L42` |
+
+**Entities are not copies of external content.** They are what you *learned* from the source, with a breadcrumb back to the original. You shouldn't need to open Amplitude to know what the data said, but you *can* verify it.
+
+How this applies to each entity type:
+
+- **Personas** — synthesized from multiple sources. The entity *is* the content. Covers anyone relevant to the lifecycle: end users, buyers, internal stakeholders, partners, regulators.
+- **Problems** — synthesized understanding of a problem. Can be user-facing, business, operational, or technical. Summary + evidence references.
+- **Evidence** — the insight extracted from a data source, with enough detail to stand alone. Not a copy of the raw data.
+- **Competitors** — your analysis of their position. Summary + URL/product references.
+- **Features** — current state of a capability. Pointers to PRDs/POCs + status summary.
+- **Decisions** — original content (the rationale *is* the entity). References the evidence that informed it.
+- **Constraints** — full description of the limitation. References the source (legal, architecture, stakeholder).
+
 ## Operations
 
 ### Add Entity

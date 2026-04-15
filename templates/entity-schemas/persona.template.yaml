@@ -1,19 +1,27 @@
 # Entity Schema: Persona
-# Represents a user type or stakeholder archetype.
+# Represents anyone relevant to the product lifecycle — end users, buyers,
+# internal stakeholders, partners, regulators, support agents, executives.
+# Not limited to product users.
 
-id: ""          # kebab-case identifier (e.g., enterprise-admin)
+id: ""          # kebab-case identifier (e.g., enterprise-admin, eng-lead, procurement-buyer)
 name: ""        # Human-readable name
 type: persona
 
+# --- Summary layer (the synthesized insight) ---
 description: "" # Who this person is, in one sentence
 
+# --- Detail layer (useful without accessing the source) ---
+kind: ""        # end-user | buyer | internal-stakeholder | partner | regulator | other
 role: ""        # Their role or title
 context: ""     # Environment they operate in
 goals: []       # What they're trying to accomplish
 pain_points: [] # What frustrates them or blocks their goals
 behaviors: []   # Observable patterns relevant to the product
+influence: ""   # How they affect product decisions (approver, blocker, champion, user, etc.)
 
-source: ""      # Where this persona was identified (research, interviews, assumption)
+# --- Source layer (pointer to the original for verification) ---
+source: ""      # Where this persona was identified (research, interviews, assumption, internal)
+source_ref: ""  # Specific reference (e.g., interview transcript path, CRM record, org chart)
 confidence: ""  # high | medium | low — how well-evidenced is this persona
 
 created: ""     # ISO date

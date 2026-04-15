@@ -1,20 +1,34 @@
 # Entity Schema: Evidence
 # A data point, quote, metric, or finding that supports or refutes a claim.
+# Stores the distilled insight, not a copy of the raw data.
 
 id: ""          # kebab-case identifier (e.g., q1-onboarding-abandonment-rate)
 name: ""        # Human-readable name
 type: evidence
 
+# --- Summary layer (the synthesized insight) ---
 kind: ""        # quantitative | qualitative | anecdotal
 summary: ""     # What this evidence says, in one sentence
-detail: ""      # Full context — the quote, the metric, the finding
 
-source_type: "" # analytics | interview | survey | support-ticket | market-research | competitor-analysis | internal
-source_ref: ""  # Specific source (e.g., "Amplitude, Q1 2026", "User interview #12")
+# --- Detail layer (useful without accessing the source) ---
+detail: ""      # Enough context to act on without opening the source.
+                # For quantitative: the metric, time range, segment, trend direction.
+                # For qualitative: the relevant quote or observation, paraphrased if needed.
+                # For anecdotal: the story, with enough specifics to assess reliability.
 
-supports: []    # Entity IDs this evidence supports (problems, decisions)
+# --- Source layer (pointer to the original for verification) ---
+source_type: "" # analytics | interview | survey | support-ticket | market-research | competitor-analysis | sales-call | internal-discussion | regulatory | other
+source_ref: ""  # Specific, verifiable reference. Examples:
+                #   "amplitude://funnel/sso-onboarding?period=Q1-2026"
+                #   "interviews/enterprise-admin-03.md:L42-L58"
+                #   "zendesk://ticket/12345"
+                #   "retro/2026-03-sprint-review.md"
+                #   "https://competitor.com/pricing"
+collected: ""   # When the evidence was gathered (may differ from created date)
+
+supports: []    # Entity IDs this evidence supports (problems, decisions, features)
 refutes: []     # Entity IDs this evidence argues against
-confidence: ""  # high | medium | low — reliability of the source
+confidence: ""  # high | medium | low — reliability of the source and the interpretation
 
 created: ""
 updated: ""
