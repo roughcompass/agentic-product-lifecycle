@@ -60,10 +60,12 @@ Every agent file (`agents/*.agent.md`) must:
 
 ### Templates
 
-Templates in `templates/` are Markdown files with placeholder sections. They:
+Templates in `templates/` are files with placeholder sections. They:
+- Must use the `.template` extension before the format extension (e.g., `prd.template.md`, `research-sources.template.yaml`, `story.template.html`)
 - Use `{{placeholder}}` syntax for fields agents fill in
 - Include inline guidance comments (`<!-- ... -->`) explaining each section
 - Are designed to be opinionated defaults — teams can override them in their target projects
+- Supporting files (runtime assets, reference docs) within template directories do NOT use the `.template` extension — only the actual template files do
 
 ### Skill Files
 

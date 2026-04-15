@@ -81,7 +81,7 @@ git clone git@github.com:roughcompass/agentic-product-lifecycle.git
 
 # Copy the agents you need into your project
 cp agentic-product-lifecycle/agents/prd-drafter.agent.md your-project/.agent/
-cp agentic-product-lifecycle/templates/prd.md your-project/templates/
+cp agentic-product-lifecycle/templates/prd.template.md your-project/templates/
 ```
 
 ### As a Git Submodule
