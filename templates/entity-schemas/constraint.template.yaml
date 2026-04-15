@@ -1,8 +1,8 @@
 # Entity Schema: Constraint
 # A limitation that bounds what can be built or how.
 
-id: ""          # kebab-case identifier (e.g., must-support-saml-oidc)
-name: ""        # Human-readable name
+id: ""          # kebab-case identifier, IMMUTABLE once created (e.g., must-support-saml-oidc)
+name: ""        # Human-readable display name (can change — never use for references)
 type: constraint
 
 kind: ""        # technical | regulatory | business | resource | timeline

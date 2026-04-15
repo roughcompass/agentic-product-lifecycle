@@ -14,6 +14,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions follow 
 - ADR (Architecture Decision Record) template with knowledge graph references
 
 ### Changed
+- **ID immutability convention**: entity IDs are now documented as permanent once created. Names are display-only, references always use IDs.
+- All artifact templates now use `author_handle` + `author_name` pattern instead of bare `{{author}}` — stable handle for references, display name for readability
+- All 7 entity schemas annotated with IMMUTABLE on `id` field, display-only on `name` field
+- Decision schema `decided_by` now specifies stable handle (e.g., GitHub username)
+- Knowledge-graph skill: new Rename Entity operation, IDs and Referencing section
 - Persona schema broadened: now covers end users, buyers, internal stakeholders, partners, regulators (added `kind`, `influence`, `source_ref` fields)
 - Problem schema broadened: now covers user-facing, business, operational, technical, and compliance problems (added `kind`, `domain`, `source_ref` fields)
 - Evidence schema enhanced: explicit three-layer structure, richer source_ref examples, added `collected` date field

@@ -2,8 +2,8 @@
 # Represents any problem worth tracking — user-facing, business, operational,
 # or technical. Not limited to end-user pain points.
 
-id: ""          # kebab-case identifier (e.g., onboarding-drop-off, eng-deploy-bottleneck)
-name: ""        # Human-readable name
+id: ""          # kebab-case identifier, IMMUTABLE once created (e.g., onboarding-drop-off)
+name: ""        # Human-readable display name (can change — never use for references)
 type: problem
 
 # --- Summary layer (the synthesized insight) ---

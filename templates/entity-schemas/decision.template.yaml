@@ -1,8 +1,8 @@
 # Entity Schema: Decision
 # A product or technical decision with rationale and evidence.
 
-id: ""          # kebab-case identifier (e.g., build-wizard-not-autodetect)
-name: ""        # Human-readable name
+id: ""          # kebab-case identifier, IMMUTABLE once created (e.g., build-wizard-not-autodetect)
+name: ""        # Human-readable display name (can change — never use for references)
 type: decision
 
 statement: ""   # The decision, in one sentence
@@ -13,7 +13,7 @@ evidence: []    # Evidence IDs that informed this decision
 constraints: [] # Constraint IDs that shaped this decision
 status: ""      # proposed | accepted | superseded | reversed
 
-decided_by: ""  # Who made or approved this decision
+decided_by: ""  # Stable handle of who made/approved (e.g., GitHub username)
 decided_on: ""  # ISO date
 
 created: ""

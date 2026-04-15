@@ -1,8 +1,8 @@
 # Entity Schema: Feature
 # A product capability — proposed, in progress, or shipped.
 
-id: ""          # kebab-case identifier (e.g., guided-sso-wizard)
-name: ""        # Human-readable name
+id: ""          # kebab-case identifier, IMMUTABLE once created (e.g., guided-sso-wizard)
+name: ""        # Human-readable display name (can change — never use for references)
 type: feature
 
 description: "" # What this feature does, in one sentence

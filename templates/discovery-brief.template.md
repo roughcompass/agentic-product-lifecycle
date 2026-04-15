@@ -4,7 +4,7 @@
      and feeds into the prd-drafter agent for requirements definition. -->
 
 **Status:** In Progress | Complete | Superseded
-**Author:** {{author}}
+**Author:** {{author_name}} (`@{{author_handle}}`)
 **Date:** {{date}}
 **Last Updated:** {{date}}
 

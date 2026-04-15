@@ -37,6 +37,29 @@ How this applies to each entity type:
 - **Decisions** — original content (the rationale *is* the entity). References the evidence that informed it.
 - **Constraints** — full description of the limitation. References the source (legal, architecture, stakeholder).
 
+## IDs and Referencing
+
+**IDs are immutable.** Once an entity is created with an ID, that ID never changes — even if the entity's `name` is updated. All cross-references use IDs, never display names.
+
+### Rules
+
+1. **Entity IDs** are kebab-case, generated from the initial name at creation time. They are the filename (without extension) and the reference key.
+   - `personas/enterprise-admin` stays `enterprise-admin` even if renamed to "Platform Administrator"
+2. **Cross-references** between entities always use `<type>/<id>` format: `personas/enterprise-admin`, `evidence/q1-abandonment-rate`
+3. **Author fields** in artifacts use a stable handle (GitHub username), not a display name. Templates provide both `author_handle` (stable, for references) and `author_name` (display, can change).
+4. **Renaming** updates the `name` field in the entity file. The ID, filename, and all references remain unchanged.
+5. **Never reference by name.** If you need to mention an entity in prose, use the name for readability but always include the ID: "Enterprise Admin (`personas/enterprise-admin`)"
+
+### What changes vs. what doesn't
+
+| Field | Can change? | Used for references? |
+|-------|-------------|---------------------|
+| `id` | Never | Yes — all cross-references |
+| `name` | Yes | No — display only |
+| `author_handle` | Rarely | Yes — artifact ownership |
+| `author_name` | Yes | No — display only |
+| Entity filename | Never (matches `id`) | Yes — file path is the canonical locator |
+
 ## Operations
 
 ### Add Entity
@@ -45,18 +68,28 @@ Create a new entity file from the appropriate schema template.
 
 1. Read the schema from `templates/entity-schemas/<type>.template.yaml`
 2. Populate fields from provided data
-3. Generate an ID (kebab-case from the name)
+3. Generate an ID (kebab-case from the initial name). **This ID is permanent.**
 4. Write to `knowledge/entities/<type>/<id>.yaml`
 5. Return the entity ID for relationship linking
 
 ### Update Entity
 
-Modify an existing entity.
+Modify an existing entity. The `id` field must not be changed.
 
 1. Read `knowledge/entities/<type>/<id>.yaml`
-2. Update specified fields
+2. Update specified fields (never `id`)
 3. Set `updated` to current date
 4. Write back
+
+### Rename Entity
+
+Update an entity's display name without breaking references.
+
+1. Read `knowledge/entities/<type>/<id>.yaml`
+2. Update the `name` field to the new display name
+3. Set `updated` to current date
+4. Write back
+5. The ID, filename, and all cross-references remain unchanged
 
 ### Add Relationship
 

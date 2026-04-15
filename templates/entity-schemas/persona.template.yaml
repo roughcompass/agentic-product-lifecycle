@@ -3,8 +3,8 @@
 # internal stakeholders, partners, regulators, support agents, executives.
 # Not limited to product users.
 
-id: ""          # kebab-case identifier (e.g., enterprise-admin, eng-lead, procurement-buyer)
-name: ""        # Human-readable name
+id: ""          # kebab-case identifier, IMMUTABLE once created (e.g., enterprise-admin, eng-lead)
+name: ""        # Human-readable display name (can change — never use for references)
 type: persona
 
 # --- Summary layer (the synthesized insight) ---

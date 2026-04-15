@@ -4,7 +4,7 @@
      with clear success/failure criteria and a timebox. -->
 
 **Status:** Proposed | In Progress | Passed | Failed | Cancelled
-**Author:** {{author}}
+**Author:** {{author_name}} (`@{{author_handle}}`)
 **Date:** {{date}}
 **Last Updated:** {{date}}
 **PRD Ref:** {{path to parent PRD, if applicable}}

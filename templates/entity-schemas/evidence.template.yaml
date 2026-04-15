@@ -2,8 +2,8 @@
 # A data point, quote, metric, or finding that supports or refutes a claim.
 # Stores the distilled insight, not a copy of the raw data.
 
-id: ""          # kebab-case identifier (e.g., q1-onboarding-abandonment-rate)
-name: ""        # Human-readable name
+id: ""          # kebab-case identifier, IMMUTABLE once created (e.g., q1-onboarding-abandonment-rate)
+name: ""        # Human-readable display name (can change — never use for references)
 type: evidence
 
 # --- Summary layer (the synthesized insight) ---

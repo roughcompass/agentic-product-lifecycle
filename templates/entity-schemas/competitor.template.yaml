@@ -1,8 +1,8 @@
 # Entity Schema: Competitor
 # A competing product, feature, or alternative solution.
 
-id: ""          # kebab-case identifier (e.g., acme-sso-wizard)
-name: ""        # Product or company name
+id: ""          # kebab-case identifier, IMMUTABLE once created (e.g., acme-sso-wizard)
+name: ""        # Product or company display name (can change — never use for references)
 type: competitor
 
 url: ""         # Product URL if applicable

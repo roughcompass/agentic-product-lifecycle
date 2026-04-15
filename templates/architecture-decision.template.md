@@ -4,7 +4,7 @@
      significant technical or product decisions with context and consequences. -->
 
 **Status:** Proposed | Accepted | Deprecated | Superseded by [ADR-XXX]
-**Author:** {{author}}
+**Author:** {{author_name}} (`@{{author_handle}}`)
 **Date:** {{date}}
 **Last Updated:** {{date}}
 **Graph Ref:** `decisions/{{id}}`
@@ -83,4 +83,4 @@ constraints, and evidence from the knowledge graph where available.}}
 
 | Date | Author | Change |
 |------|--------|--------|
-| {{date}} | {{author}} | Initial proposal |
+| {{date}} | @{{author_handle}} | Initial proposal |
