@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{STORY_TITLE}}</title>
+  <meta name="description" content="{{STORY_DEK}}" />
+
+  <!--
+    story-weaver template
+    Replace {{TOKENS}} with story content. Add scenes as needed.
+    Each scene must have a unique data-scene index starting at 1.
+    Optional data-chapter sets the label shown in the top-left chapter tag.
+    Optional data-graph-refs links scenes to knowledge graph entities.
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../assets/runtime.css" />
+  <link rel="stylesheet" href="story.css" />
+</head>
+<body>
+  <div class="story-progress" aria-hidden="true"></div>
+  <div class="story-chapter" aria-hidden="true">01/08</div>
+  <div class="story-brand" aria-hidden="true">{{STORY_BRAND}}</div>
+  <nav class="story-dots" aria-label="Scene navigation"></nav>
+
+  <main class="story">
+
+    <!-- Scene 1 — Hero / Hook -->
+    <section class="scene scene--hero" data-scene="1" data-chapter="Hook"
+             data-graph-refs="{{PROBLEM_ENTITY_REFS}}">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">{{STORY_EYEBROW}}</p>
+        <h1 class="display hero-display">
+          <span class="line">{{HOOK_LINE_1}}</span>
+          <span class="line"><em>{{HOOK_LINE_2}}</em></span>
+          <span class="line">{{HOOK_LINE_3}}</span>
+        </h1>
+        <p class="dek">{{HOOK_DEK}}</p>
+      </div>
+      <div class="scene-end">scroll</div>
+    </section>
+
+    <!-- Scene 2 — Current state -->
+    <section class="scene" data-scene="2" data-chapter="Current state"
+             data-graph-refs="{{EVIDENCE_ENTITY_REFS}}">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Chapter 02 — The way it is</p>
+        <h2 class="display">{{CURRENT_HEADLINE}}</h2>
+        <div class="body-text">
+          <p>{{CURRENT_BODY}}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 3 — Pullquote -->
+    <section class="scene" data-scene="3" data-chapter="Cost"
+             data-graph-refs="{{EVIDENCE_ENTITY_REFS}}">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Chapter 03 — What it costs</p>
+        <blockquote class="pullquote">
+          {{PULLQUOTE}}
+          <cite class="pullquote-attribution">— {{PULLQUOTE_ATTRIBUTION}}</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Scene 4 — Stats -->
+    <section class="scene" data-scene="4" data-chapter="The numbers"
+             data-graph-refs="{{EVIDENCE_ENTITY_REFS}}">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Chapter 04 — In the numbers</p>
+        <h2 class="display">{{STATS_HEADLINE}}</h2>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-value">{{STAT_1_VALUE}}</span>
+            <p class="stat-label">{{STAT_1_LABEL}}</p>
+          </div>
+          <div class="stat">
+            <span class="stat-value">{{STAT_2_VALUE}}</span>
+            <p class="stat-label">{{STAT_2_LABEL}}</p>
+          </div>
+          <div class="stat">
+            <span class="stat-value">{{STAT_3_VALUE}}</span>
+            <p class="stat-label">{{STAT_3_LABEL}}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 5 — Pivot / target headline -->
+    <section class="scene" data-scene="5" data-chapter="The pivot"
+             data-graph-refs="{{DECISION_ENTITY_REFS}}">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Chapter 05 — The pivot</p>
+        <h2 class="display">{{PIVOT_HEADLINE}}</h2>
+        <p class="dek">{{PIVOT_DEK}}</p>
+      </div>
+    </section>
+
+    <!-- Scene 6 — Capability grid -->
+    <section class="scene" data-scene="6" data-chapter="What you get"
+             data-graph-refs="{{FEATURE_ENTITY_REFS}}">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Chapter 06 — What you get</p>
+        <h2 class="display">{{VALUE_HEADLINE}}</h2>
+        <div class="capability-grid">
+          <article class="capability-card">
+            <p class="capability-index">01</p>
+            <h3 class="capability-title">{{CAP_1_TITLE}}</h3>
+            <p class="capability-body">{{CAP_1_BODY}}</p>
+          </article>
+          <article class="capability-card">
+            <p class="capability-index">02</p>
+            <h3 class="capability-title">{{CAP_2_TITLE}}</h3>
+            <p class="capability-body">{{CAP_2_BODY}}</p>
+          </article>
+          <article class="capability-card">
+            <p class="capability-index">03</p>
+            <h3 class="capability-title">{{CAP_3_TITLE}}</h3>
+            <p class="capability-body">{{CAP_3_BODY}}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 7 — Closer -->
+    <section class="scene scene--closer" data-scene="7" data-chapter="Closer">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Closer</p>
+        <h2 class="display hero-display">{{CLOSER_HEADLINE}}</h2>
+        <p class="dek">{{CLOSER_DEK}}</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="../assets/runtime.js"></script>
+  <script src="story.js" defer></script>
+</body>
+</html>

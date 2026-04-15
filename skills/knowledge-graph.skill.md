@@ -21,7 +21,7 @@ This skill works on flat YAML files in the repo. It is the abstraction point —
 
 Create a new entity file from the appropriate schema template.
 
-1. Read the schema from `templates/entity-schemas/<type>.yaml`
+1. Read the schema from `templates/entity-schemas/<type>.template.yaml`
 2. Populate fields from provided data
 3. Generate an ID (kebab-case from the name)
 4. Write to `knowledge/entities/<type>/<id>.yaml`

@@ -7,7 +7,7 @@ A curated registry of AI agents and templates for product-led software developme
 ## Repository Structure
 
 - `agents/` — Agent definitions. One file per agent. File naming: `<name>.agent.md`
-- `templates/` — Artifact templates that agents reference. File naming: `<artifact-type>.md`
+- `templates/` — Artifact templates that agents reference. File naming: `<artifact-type>.template.<ext>` (e.g., `prd.template.md`, `research-sources.template.yaml`)
 - `skills/` — Reusable skills (future). File naming: `<name>.skill.md`
 - `registry.yaml` — Central index of all agents, skills, and their lifecycle phase mappings
 - `CODEOWNERS` — Ownership mapping for agents and skills
@@ -55,7 +55,7 @@ Every agent file (`agents/*.agent.md`) must:
 - Begin with valid frontmatter (see schema above)
 - Be fully self-contained — a single file that can be copied into any project
 - Include a clear `## Description` explaining what the agent does and when to use it
-- Reference templates by relative path (e.g., `templates/prd.md`)
+- Reference templates by relative path (e.g., `templates/prd.template.md`)
 - Not assume any specific project tooling (Jira, Linear, etc.) — use abstract references that MCP servers can fulfill
 
 ### Templates

@@ -20,7 +20,7 @@ Use this agent at the **Definition** phase of the product lifecycle — after di
 ## Responsibilities
 
 ### 1. Draft PRDs
-- Create a new PRD from the template at `templates/prd.md`
+- Create a new PRD from the template at `templates/prd.template.md`
 - Fill in sections based on user-provided context: problem statement, target users, proposed solution
 - Ask clarifying questions when critical sections lack sufficient detail
 - Flag assumptions explicitly so they can be validated
@@ -65,11 +65,11 @@ Invoke this agent in your product project:
 
 ## Outputs
 
-- A PRD file following the `templates/prd.md` structure, saved to the target project's artifacts directory (e.g., `artifacts/prds/<feature-name>.md`)
+- A PRD file following the `templates/prd.template.md` structure, saved to the target project's artifacts directory (e.g., `artifacts/prds/<feature-name>.md`)
 
 ## Template
 
-This agent uses [templates/prd.md](../templates/prd.md) as its base structure.
+This agent uses [templates/prd.template.md](../templates/prd.template.md) as its base structure.
 
 ## Tools & Access
 

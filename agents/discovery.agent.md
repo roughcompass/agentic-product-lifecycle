@@ -49,7 +49,7 @@ Use the `knowledge-graph` skill for all graph operations.
 
 ### 4. Discovery Brief
 
-Produces a discovery brief artifact using `templates/discovery-brief.md`. The brief synthesizes findings into an actionable document that feeds the prd-drafter agent.
+Produces a discovery brief artifact using `templates/discovery-brief.template.md`. The brief synthesizes findings into an actionable document that feeds the prd-drafter agent.
 
 ### 5. Recommendations
 

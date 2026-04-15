@@ -28,6 +28,13 @@ Most product work fails not from bad code, but from missing context: unclear req
 | **Release** | Deployment, changelog, communication | _planned_ |
 | **Feedback** | Retrospectives, metrics review, iteration | _planned_ |
 
+### Cross-Cutting Skills
+
+| Skill | Description |
+|-------|-------------|
+| `knowledge-graph` | CRUD and query operations on the product knowledge graph |
+| `story-weaver` | Scroll-driven narrative stories from lifecycle artifacts and knowledge graph entities |
+
 ## Project Structure
 
 ```
@@ -39,7 +46,8 @@ agentic-product-lifecycle/
 │   ├── discovery.agent.md
 │   └── prd-drafter.agent.md
 ├── skills/                    # Reusable skills
-│   └── knowledge-graph.skill.md
+│   ├── knowledge-graph.skill.md
+│   └── story-weaver.skill.md
 ├── knowledge/                 # Product knowledge graph
 │   ├── graph.yaml             # Relationship index
 │   └── entities/              # Entity files by type
@@ -50,11 +58,15 @@ agentic-product-lifecycle/
 │       ├── features/
 │       ├── decisions/
 │       └── constraints/
-├── templates/                 # Artifact & entity templates
-│   ├── prd.md
-│   ├── discovery-brief.md
-│   ├── research-sources.yaml
-│   └── entity-schemas/        # Knowledge graph entity schemas
+├── templates/                 # Artifact & entity templates (.template.*)
+│   ├── prd.template.md
+│   ├── discovery-brief.template.md
+│   ├── research-sources.template.yaml
+│   ├── entity-schemas/        # Knowledge graph entity schemas
+│   └── story-weaver/          # Story runtime, template, references
+│       ├── assets/            # Shared runtime (CSS + JS)
+│       ├── story.template.html
+│       └── references/        # Design principles, scene patterns
 ├── registry.yaml              # Agent/skill registry & lifecycle mapping
 └── CODEOWNERS                 # Agent ownership
 ```

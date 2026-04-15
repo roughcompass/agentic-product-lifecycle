@@ -24,7 +24,7 @@ agents:
     file: agents/discovery.agent.md
     phase: discovery
     description: Conducts product discovery research, populates the knowledge graph, and produces discovery briefs.
-    template: templates/discovery-brief.md
+    template: templates/discovery-brief.template.md
     skills:
       - knowledge-graph
     owner: roughcompass
@@ -34,27 +34,27 @@ agents:
     file: agents/prd-drafter.agent.md
     phase: definition
     description: Drafts and refines Product Requirements Documents from user input, research, or discovery artifacts.
-    template: templates/prd.md
+    template: templates/prd.template.md
     owner: roughcompass
     status: active
 
 templates:
   prd:
-    file: templates/prd.md
+    file: templates/prd.template.md
     phase: definition
     description: Product Requirements Document template with structured sections for problem, solution, scope, and success criteria.
     used_by:
       - prd-drafter
 
   discovery-brief:
-    file: templates/discovery-brief.md
+    file: templates/discovery-brief.template.md
     phase: discovery
     description: Discovery brief template synthesizing research findings with knowledge graph references.
     used_by:
       - discovery
 
   research-sources:
-    file: templates/research-sources.yaml
+    file: templates/research-sources.template.yaml
     phase: discovery
     description: Configuration template declaring available data sources for the discovery agent.
     used_by:
@@ -67,11 +67,25 @@ templates:
     used_by:
       - knowledge-graph
 
+  story-weaver:
+    file: templates/story-weaver/
+    phase: meta
+    description: Story runtime (CSS/JS), HTML template, scene patterns, and design principles for scroll-driven narratives.
+    used_by:
+      - story-weaver
+
 skills:
   knowledge-graph:
     file: skills/knowledge-graph.skill.md
     phase: meta
     description: CRUD and query operations on the product knowledge graph. Used by all lifecycle agents.
+    owner: roughcompass
+    status: active
+
+  story-weaver:
+    file: skills/story-weaver.skill.md
+    phase: meta
+    description: Builds scroll-driven narrative stories as self-contained HTML from lifecycle artifacts and knowledge graph.
     owner: roughcompass
     status: active
 
