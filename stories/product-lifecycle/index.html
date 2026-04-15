@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Agentic Product Lifecycle</title>
+  <meta name="description" content="Every product starts with a conversation. Most end there too. What if every phase produced durable, connected artifacts instead?" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../assets/runtime.css" />
+  <link rel="stylesheet" href="story.css" />
+</head>
+<body>
+  <div class="story-progress" aria-hidden="true"></div>
+  <div class="story-chapter" aria-hidden="true">01/09</div>
+  <div class="story-brand" aria-hidden="true">roughcompass</div>
+  <nav class="story-dots" aria-label="Scene navigation"></nav>
+
+  <main class="story">
+
+    <!-- Scene 1 — Hook -->
+    <section class="scene scene--hero" data-scene="1" data-chapter="Hook">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Agentic Product Lifecycle</p>
+        <h1 class="display hero-display">
+          <span class="line">Every product starts</span>
+          <span class="line">with a <em>conversation.</em></span>
+          <span class="line">Most end there too.</span>
+        </h1>
+        <p class="dek">Decisions made in Slack. Requirements in someone's head. Context lost between phases. Scroll to see what that costs.</p>
+      </div>
+      <div class="scene-end">scroll</div>
+    </section>
+
+    <!-- Scene 2 — Current state -->
+    <section class="scene" data-scene="2" data-chapter="The gap">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Chapter 02 — The artifact gap</p>
+        <h2 class="display">
+          <span class="line">The problem isn't</span>
+          <span class="line">bad engineering.</span>
+          <span class="line">It's <em>missing context.</em></span>
+        </h2>
+        <div class="body-text">
+          <p>Discovery happens in a meeting. Requirements live in a doc no one updates. Architecture decisions are tribal knowledge. Success criteria are vibes.</p>
+          <p>Each phase generates understanding. <strong>Almost none of it survives the handoff to the next phase.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 3 — Cost (stats) -->
+    <section class="scene" data-scene="3" data-chapter="The cost">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Chapter 03 — The hidden tax</p>
+        <h2 class="display">The cost of context loss,<br>made visible.</h2>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-value">3x</span>
+            <p class="stat-label">rework when requirements are undocumented</p>
+          </div>
+          <div class="stat">
+            <span class="stat-value">0%</span>
+            <p class="stat-label">of chat-based decisions that are traceable six months later</p>
+          </div>
+          <div class="stat">
+            <span class="stat-value">Every<br>time</span>
+            <p class="stat-label">new research starts from scratch instead of building on what's known</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 4 — Pullquote -->
+    <section class="scene" data-scene="4" data-chapter="The moment">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Chapter 04 — The thing everyone knows</p>
+        <blockquote class="pullquote">
+          We shipped what we discussed three months ago. The problem changed two months ago.
+          <cite class="pullquote-attribution">— Every retrospective, eventually</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Scene 5 — Pivot -->
+    <section class="scene" data-scene="5" data-chapter="The pivot">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Chapter 05 — The reframe</p>
+        <h2 class="display">
+          <span class="line">What if every phase</span>
+          <span class="line">produced <em>durable,</em></span>
+          <span class="line"><em>connected</em> artifacts?</span>
+        </h2>
+        <p class="dek">Not docs that rot. Not wikis no one reads. Structured, version-controlled artifacts that agents produce, validate, and evolve.</p>
+      </div>
+    </section>
+
+    <!-- Scene 6 — The lifecycle loop (interactive) -->
+    <section class="scene scene--lifecycle" data-scene="6" data-chapter="The loop">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Chapter 06 — The lifecycle</p>
+        <h2 class="display">One loop. Seven agents.<br>Every phase <em>covered.</em></h2>
+        <div class="lifecycle-ring">
+          <div class="lifecycle-node" data-phase="discovery">
+            <span class="lifecycle-label">Discovery</span>
+            <span class="lifecycle-agent">discovery agent</span>
+          </div>
+          <div class="lifecycle-arrow">&rarr;</div>
+          <div class="lifecycle-node" data-phase="definition">
+            <span class="lifecycle-label">Definition</span>
+            <span class="lifecycle-agent">prd-drafter</span>
+          </div>
+          <div class="lifecycle-arrow">&rarr;</div>
+          <div class="lifecycle-node" data-phase="validation">
+            <span class="lifecycle-label">Validation</span>
+            <span class="lifecycle-agent">validator</span>
+          </div>
+          <div class="lifecycle-arrow">&rarr;</div>
+          <div class="lifecycle-node" data-phase="delivery">
+            <span class="lifecycle-label">Delivery</span>
+            <span class="lifecycle-agent">delivery-planner</span>
+          </div>
+          <div class="lifecycle-arrow">&rarr;</div>
+          <div class="lifecycle-node" data-phase="feedback">
+            <span class="lifecycle-label">Feedback</span>
+            <span class="lifecycle-agent">feedback agent</span>
+          </div>
+          <div class="lifecycle-return">&hookleftarrow; feeds back into discovery</div>
+        </div>
+        <div class="chip-group">
+          <span class="chip is-accent">+ reporter agent</span>
+          <span class="chip is-accent">+ project-manager</span>
+          <span class="chip is-ok">knowledge-graph skill</span>
+          <span class="chip is-ok">prioritization skill</span>
+          <span class="chip is-ok">story-weaver skill</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 7 — Knowledge graph -->
+    <section class="scene" data-scene="7" data-chapter="The graph">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Chapter 07 — Cumulative intelligence</p>
+        <h2 class="display">
+          <span class="line">Research <em>compounds.</em></span>
+          <span class="line">Context <em>connects.</em></span>
+        </h2>
+        <div class="body-text">
+          <p>Every discovery effort writes to a knowledge graph. Personas, problems, evidence, competitors, decisions, constraints. <strong>All connected by typed relationships.</strong></p>
+          <p>The second discovery is smarter than the first. The tenth builds on everything before it. Nothing starts from scratch.</p>
+        </div>
+        <div class="graph-preview">
+          <div class="graph-node gn-persona">Personas</div>
+          <div class="graph-edge">experiences</div>
+          <div class="graph-node gn-problem">Problems</div>
+          <div class="graph-edge">supported by</div>
+          <div class="graph-node gn-evidence">Evidence</div>
+          <div class="graph-edge">informs</div>
+          <div class="graph-node gn-decision">Decisions</div>
+          <div class="graph-edge">shapes</div>
+          <div class="graph-node gn-feature">Features</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 8 — Capability grid -->
+    <section class="scene" data-scene="8" data-chapter="What you get">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Chapter 08 — What becomes possible</p>
+        <h2 class="display">Things that happen<br>when knowledge <em>persists.</em></h2>
+        <div class="capability-grid">
+          <article class="capability-card">
+            <p class="capability-index">01</p>
+            <h3 class="capability-title">PRDs write themselves</h3>
+            <p class="capability-body">The prd-drafter pulls personas, problems, and evidence from the graph. You refine, not start.</p>
+          </article>
+          <article class="capability-card">
+            <p class="capability-index">02</p>
+            <h3 class="capability-title">Updates auto-generate</h3>
+            <p class="capability-body">The reporter reads graph diffs and git history. Status updates come from the system of record, not memory.</p>
+          </article>
+          <article class="capability-card">
+            <p class="capability-index">03</p>
+            <h3 class="capability-title">Validation has teeth</h3>
+            <p class="capability-body">POCs have falsifiable hypotheses and measurable criteria. The validator tracks outcomes and recommends go/no-go.</p>
+          </article>
+          <article class="capability-card">
+            <p class="capability-index">04</p>
+            <h3 class="capability-title">Feedback closes the loop</h3>
+            <p class="capability-body">Shipped features get reviewed against success criteria. Learnings feed back into the graph for the next cycle.</p>
+          </article>
+          <article class="capability-card">
+            <p class="capability-index">05</p>
+            <h3 class="capability-title">Stories tell themselves</h3>
+            <p class="capability-body">Story-weaver turns graph entities into scroll-driven narratives. Executive updates become presentations.</p>
+          </article>
+          <article class="capability-card">
+            <p class="capability-index">06</p>
+            <h3 class="capability-title">Pluggable, not locked in</h3>
+            <p class="capability-body">Bring your own tools via MCP servers. Linear, Jira, Amplitude, Zendesk. The agents adapt to what's available.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 9 — Closer -->
+    <section class="scene scene--closer" data-scene="9" data-chapter="Closer">
+      <div class="scene-inner stagger">
+        <p class="eyebrow">Closer</p>
+        <h2 class="display hero-display">
+          <span class="line">Stop managing products</span>
+          <span class="line">from <em>memory.</em></span>
+          <span class="line">Start managing them</span>
+          <span class="line">from <em>knowledge.</em></span>
+        </h2>
+        <p class="dek">roughcompass/agentic-product-lifecycle</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="../assets/runtime.js"></script>
+</body>
+</html>

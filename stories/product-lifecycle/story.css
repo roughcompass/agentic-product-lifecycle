@@ -1,0 +1,159 @@
+/* ============================================================
+ * The Agentic Product Lifecycle — story theme
+ * Aesthetic: editorial dark
+ * Palette: warm black + cream + amber accent
+ * Type: Fraunces / IBM Plex Sans / JetBrains Mono
+ * ============================================================ */
+
+:root {
+  --story-bg: #0c0b09;
+  --story-fg: #f0ebe0;
+  --story-dim: #918b7e;
+  --story-mute: #5c5850;
+  --story-accent: #d4943a;
+  --story-rule: rgba(240, 235, 224, 0.08);
+  --story-soft: rgba(240, 235, 224, 0.03);
+  --story-danger: #d45c4f;
+  --story-ok: #5fb366;
+}
+
+/* ============================================================
+ * Lifecycle ring — Scene 6
+ * ============================================================ */
+
+.lifecycle-ring {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 3rem 0 2rem;
+}
+
+.lifecycle-node {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.25rem 1.75rem;
+  border: 1px solid var(--story-rule);
+  background: var(--story-soft);
+  transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+
+.lifecycle-node:hover {
+  border-color: var(--story-accent);
+  background: rgba(212, 148, 58, 0.06);
+}
+
+.lifecycle-label {
+  font-family: var(--story-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--story-fg);
+  font-variation-settings: "opsz" 48, "SOFT" 40;
+}
+
+.lifecycle-node:hover .lifecycle-label {
+  color: var(--story-accent);
+}
+
+.lifecycle-agent {
+  font-family: var(--story-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--story-dim);
+}
+
+.lifecycle-arrow {
+  font-family: var(--story-mono);
+  font-size: 1.1rem;
+  color: var(--story-mute);
+  padding: 0 0.25rem;
+}
+
+.lifecycle-return {
+  width: 100%;
+  font-family: var(--story-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--story-accent);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--story-rule);
+}
+
+@media (max-width: 900px) {
+  .lifecycle-ring {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .lifecycle-arrow {
+    transform: rotate(90deg);
+    text-align: center;
+  }
+}
+
+/* ============================================================
+ * Graph preview — Scene 7
+ * ============================================================ */
+
+.graph-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 3rem;
+  padding: 2rem;
+  border: 1px solid var(--story-rule);
+  background: var(--story-soft);
+}
+
+.graph-node {
+  font-family: var(--story-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--story-rule);
+  color: var(--story-fg);
+  background: var(--story-bg);
+  white-space: nowrap;
+}
+
+.gn-persona { border-color: #7ca3d4; color: #7ca3d4; }
+.gn-problem { border-color: var(--story-danger); color: var(--story-danger); }
+.gn-evidence { border-color: var(--story-accent); color: var(--story-accent); }
+.gn-decision { border-color: #b89cd6; color: #b89cd6; }
+.gn-feature { border-color: var(--story-ok); color: var(--story-ok); }
+
+.graph-edge {
+  font-family: var(--story-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--story-mute);
+  padding: 0 0.15rem;
+}
+
+@media (max-width: 640px) {
+  .graph-preview {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .graph-edge {
+    padding: 0.25rem 0;
+  }
+}
+
+/* ============================================================
+ * Scene-specific overrides
+ * ============================================================ */
+
+.scene--lifecycle .chip-group {
+  margin-top: 2rem;
+}

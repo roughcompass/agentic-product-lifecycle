@@ -1,0 +1,540 @@
+/* ============================================================
+ * story-weaver runtime
+ * Scroll-driven narrative framework.
+ * Stories override CSS variables and add their own scene styles.
+ * ============================================================ */
+
+:root {
+  /* Theme — override per story */
+  --story-bg: #0b0a08;
+  --story-fg: #f2ede0;
+  --story-dim: #8b8577;
+  --story-mute: #5a5750;
+  --story-accent: #e8a33a;
+  --story-rule: rgba(242, 237, 224, 0.08);
+  --story-soft: rgba(242, 237, 224, 0.03);
+  --story-danger: #e65c4f;
+  --story-ok: #6bb370;
+
+  /* Typography — override per story */
+  --story-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --story-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --story-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* Type scale — fluid */
+  --story-scale-eyebrow: 0.75rem;
+  --story-scale-body: 1.0625rem;
+  --story-scale-dek: clamp(1.25rem, 1.8vw, 1.625rem);
+  --story-scale-h2: clamp(2rem, 4.5vw, 3.5rem);
+  --story-scale-h1: clamp(2.75rem, 8vw, 6.5rem);
+  --story-scale-hero: clamp(3.5rem, 11vw, 9rem);
+
+  /* Layout */
+  --story-max: 1240px;
+  --story-gutter: clamp(1.5rem, 5vw, 5rem);
+  --story-pad: clamp(5rem, 12vh, 10rem);
+}
+
+* { box-sizing: border-box; }
+*::selection { background: var(--story-accent); color: var(--story-bg); }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--story-bg);
+  color: var(--story-fg);
+  font-family: var(--story-body);
+  font-size: var(--story-scale-body);
+  line-height: 1.55;
+  font-feature-settings: "ss01", "cv05", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+ * Story shell
+ * ============================================================ */
+
+.story {
+  position: relative;
+  display: block;
+}
+
+/* Fixed progress bar */
+.story-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--story-rule);
+  z-index: 100;
+}
+.story-progress::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--story-accent);
+  transform-origin: left;
+  transform: scaleX(var(--progress, 0));
+  transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Scene dots on right edge */
+.story-dots {
+  position: fixed;
+  top: 50%;
+  right: clamp(1rem, 3vw, 2.5rem);
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  z-index: 100;
+}
+.story-dot {
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--story-mute);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+.story-dot::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+}
+.story-dot:hover {
+  border-color: var(--story-accent);
+  transform: scale(1.3);
+}
+.story-dot.is-active {
+  background: var(--story-accent);
+  border-color: var(--story-accent);
+  transform: scale(1.4);
+}
+
+/* Chapter label in top-left */
+.story-chapter {
+  position: fixed;
+  top: clamp(1rem, 3vw, 2rem);
+  left: clamp(1rem, 3vw, 2.5rem);
+  font-family: var(--story-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--story-dim);
+  z-index: 100;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+/* Brand label in top-right (optional, above dots) */
+.story-brand {
+  position: fixed;
+  top: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2.5rem);
+  font-family: var(--story-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--story-dim);
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* ============================================================
+ * Scene base
+ * ============================================================ */
+
+.scene {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: var(--story-pad) var(--story-gutter);
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 1400ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1400ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.scene.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scene-inner {
+  width: 100%;
+  max-width: var(--story-max);
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Staggered child reveal */
+.stagger > * {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.is-active .stagger > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.is-active .stagger > *:nth-child(1) { transition-delay: 120ms; }
+.is-active .stagger > *:nth-child(2) { transition-delay: 280ms; }
+.is-active .stagger > *:nth-child(3) { transition-delay: 440ms; }
+.is-active .stagger > *:nth-child(4) { transition-delay: 600ms; }
+.is-active .stagger > *:nth-child(5) { transition-delay: 760ms; }
+.is-active .stagger > *:nth-child(6) { transition-delay: 920ms; }
+.is-active .stagger > *:nth-child(7) { transition-delay: 1080ms; }
+.is-active .stagger > *:nth-child(8) { transition-delay: 1240ms; }
+
+/* ============================================================
+ * Typography primitives
+ * ============================================================ */
+
+.eyebrow {
+  font-family: var(--story-mono);
+  font-size: var(--story-scale-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--story-accent);
+  margin: 0 0 2.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 2.2rem;
+  height: 1px;
+  background: var(--story-accent);
+}
+
+.display {
+  font-family: var(--story-display);
+  font-size: var(--story-scale-h1);
+  font-weight: 300;
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  margin: 0 0 2.5rem 0;
+  font-variation-settings: "opsz" 144, "SOFT" 0;
+  color: var(--story-fg);
+}
+.display em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  color: var(--story-accent);
+}
+.display strong {
+  font-weight: 600;
+  font-variation-settings: "opsz" 144, "SOFT" 0;
+}
+.display .line {
+  display: block;
+}
+.display .indent {
+  display: block;
+  padding-left: 1.2em;
+}
+
+.hero-display {
+  font-size: var(--story-scale-hero);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+}
+
+.dek {
+  font-family: var(--story-display);
+  font-size: var(--story-scale-dek);
+  font-weight: 300;
+  line-height: 1.35;
+  color: var(--story-dim);
+  max-width: 44ch;
+  margin: 0 0 3rem 0;
+  font-style: italic;
+  font-variation-settings: "opsz" 24, "SOFT" 50;
+}
+
+.body-text {
+  max-width: 62ch;
+  color: var(--story-fg);
+  font-size: var(--story-scale-body);
+  line-height: 1.65;
+}
+.body-text p { margin: 0 0 1.25rem 0; }
+.body-text p:last-child { margin-bottom: 0; }
+.body-text strong {
+  color: var(--story-accent);
+  font-weight: 500;
+}
+
+/* ============================================================
+ * Pullquote
+ * ============================================================ */
+
+.pullquote {
+  font-family: var(--story-display);
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+  max-width: 26ch;
+  border-left: 2px solid var(--story-accent);
+  padding-left: 2.25rem;
+  margin: 0;
+  color: var(--story-fg);
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+}
+.pullquote-attribution {
+  display: block;
+  font-family: var(--story-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-style: normal;
+  color: var(--story-dim);
+  margin-top: 2.25rem;
+  padding-left: 2.25rem;
+  border-left: 2px solid transparent;
+}
+
+/* ============================================================
+ * Stats row
+ * ============================================================ */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(2rem, 4vw, 4rem);
+  margin: 3rem 0 0 0;
+}
+.stat {
+  border-top: 1px solid var(--story-rule);
+  padding-top: 1.25rem;
+}
+.stat-value {
+  font-family: var(--story-display);
+  font-size: clamp(2.75rem, 5.5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--story-accent);
+  display: block;
+  font-variation-settings: "opsz" 144, "SOFT" 0;
+}
+.stat-label {
+  font-family: var(--story-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--story-dim);
+  margin-top: 0.9rem;
+  line-height: 1.4;
+}
+
+/* ============================================================
+ * Capability grid
+ * ============================================================ */
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1px;
+  background: var(--story-rule);
+  border: 1px solid var(--story-rule);
+  margin-top: 3rem;
+}
+.capability-card {
+  background: var(--story-bg);
+  padding: 2.75rem 2.25rem;
+  transition: background 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+  position: relative;
+}
+.capability-card:hover {
+  background: var(--story-soft);
+}
+.capability-card:hover .capability-title {
+  color: var(--story-accent);
+}
+.capability-index {
+  font-family: var(--story-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--story-dim);
+  margin-bottom: 1.75rem;
+}
+.capability-title {
+  font-family: var(--story-display);
+  font-size: 1.625rem;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0 0 1rem 0;
+  color: var(--story-fg);
+  transition: color 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  font-variation-settings: "opsz" 48, "SOFT" 40;
+}
+.capability-body {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--story-dim);
+  margin: 0;
+}
+
+/* ============================================================
+ * Two-up layout
+ * ============================================================ */
+
+.two-up {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .two-up { grid-template-columns: 1fr; gap: 3rem; }
+}
+
+.column-label {
+  font-family: var(--story-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--story-dim);
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--story-rule);
+  margin-bottom: 2rem;
+}
+.column-label.is-before { color: var(--story-danger); }
+.column-label.is-after { color: var(--story-ok); }
+
+/* ============================================================
+ * Chips
+ * ============================================================ */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--story-mono);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--story-rule);
+  border-radius: 999px;
+  color: var(--story-dim);
+  white-space: nowrap;
+}
+.chip.is-friction {
+  border-color: rgba(230, 92, 79, 0.5);
+  color: var(--story-danger);
+  background: rgba(230, 92, 79, 0.06);
+}
+.chip.is-ok {
+  border-color: rgba(107, 179, 112, 0.5);
+  color: var(--story-ok);
+  background: rgba(107, 179, 112, 0.06);
+}
+.chip.is-accent {
+  border-color: rgba(232, 163, 58, 0.5);
+  color: var(--story-accent);
+  background: rgba(232, 163, 58, 0.06);
+}
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* ============================================================
+ * Scene end indicator
+ * ============================================================ */
+
+.scene-end {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--story-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--story-mute);
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.scene-end::after {
+  content: "↓";
+  font-family: var(--story-body);
+  animation: bob 2.4s ease-in-out infinite;
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* ============================================================
+ * Background accents (optional, story-hook)
+ * ============================================================ */
+
+.scene-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image:
+    repeating-radial-gradient(circle at 50% 50%, var(--story-fg) 0 1px, transparent 1px 3px);
+}
+
+/* ============================================================
+ * Reduced motion
+ * ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  html { scroll-behavior: auto; }
+  .scene { opacity: 1; transform: none; }
+  .stagger > * { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+ * Mobile tweaks
+ * ============================================================ */
+
+@media (max-width: 640px) {
+  :root {
+    --story-pad: 4rem;
+    --story-gutter: 1.5rem;
+  }
+  .story-dots { display: none; }
+  .pullquote { padding-left: 1.25rem; }
+  .pullquote-attribution { padding-left: 1.25rem; }
+}
