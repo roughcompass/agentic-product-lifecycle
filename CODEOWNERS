@@ -8,6 +8,7 @@
 agents/project-manager.agent.md @roughcompass
 agents/discovery.agent.md @roughcompass
 agents/prd-drafter.agent.md @roughcompass
+agents/reporter.agent.md @roughcompass
 
 # Skills
 skills/knowledge-graph.skill.md @roughcompass

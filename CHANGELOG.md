@@ -7,6 +7,9 @@ Format follows [Keep a Changelog](https://keepachangelog.com/). Versions follow 
 ## [Unreleased]
 
 ### Added
+- **reporter** agent — generates status and executive updates from knowledge graph state and git history
+- Status update template (team-facing: what changed, what's next, blockers, stale items)
+- Executive update template (leadership-facing: progress against goals, decisions, risks)
 - ADR (Architecture Decision Record) template with knowledge graph references
 - POC definition template with hypothesis, success criteria, and outcome sections
 - `.gitignore` and MIT `LICENSE`

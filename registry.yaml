@@ -38,6 +38,19 @@ agents:
     owner: roughcompass
     status: active
 
+  reporter:
+    file: agents/reporter.agent.md
+    phase: meta
+    description: Generates status and executive updates from knowledge graph state and git history.
+    templates:
+      - status-update
+      - executive-update
+    skills:
+      - knowledge-graph
+      - story-weaver
+    owner: roughcompass
+    status: active
+
 templates:
   prd:
     file: templates/prd.template.md
@@ -66,6 +79,20 @@ templates:
     description: YAML schema templates for knowledge graph entity types (persona, problem, evidence, competitor, feature, decision, constraint).
     used_by:
       - knowledge-graph
+
+  status-update:
+    file: templates/status-update.template.md
+    phase: meta
+    description: Team-facing status update with artifact changes, graph updates, blockers, and stale items.
+    used_by:
+      - reporter
+
+  executive-update:
+    file: templates/executive-update.template.md
+    phase: meta
+    description: Leadership-facing update with progress against goals, key decisions, risks, and validated hypotheses.
+    used_by:
+      - reporter
 
   architecture-decision:
     file: templates/architecture-decision.template.md

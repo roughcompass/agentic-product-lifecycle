@@ -21,6 +21,7 @@ Most product work fails not from bad code, but from missing context: unclear req
 |-------|-------------|--------|
 | **Discovery** | Research, user problems, market context | `discovery` |
 | **Definition** | Product requirements, success criteria | `prd-drafter` |
+| **Reporting** | Status updates, executive summaries | `reporter` |
 | **Architecture** | Technical design, boundaries, ADRs | _planned_ (template ready) |
 | **Validation** | POC stages, spike definitions, experiments | _planned_ (template ready) |
 | **Delivery** | Implementation, stories, task breakdown | _planned_ |
@@ -44,7 +45,8 @@ agentic-product-lifecycle/
 ├── agents/                    # Agent definitions (.agent.md)
 │   ├── project-manager.agent.md
 │   ├── discovery.agent.md
-│   └── prd-drafter.agent.md
+│   ├── prd-drafter.agent.md
+│   └── reporter.agent.md
 ├── skills/                    # Reusable skills
 │   ├── knowledge-graph.skill.md
 │   └── story-weaver.skill.md
